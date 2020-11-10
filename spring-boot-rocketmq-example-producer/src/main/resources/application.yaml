@@ -1,0 +1,21 @@
+server:
+  port: 8887
+spring:
+  application:
+    name: rocketmq-example-producer
+  cloud:
+    stream:
+      bindings:
+        duobao_period_loser:
+          content-type: application/json
+          destination: duobao_period_loser
+        duobao_period_winner:
+          content-type: application/json
+          destination: duobao_period_winner
+      rocketmq:
+        binder:
+          name-server: 47.113.201.110:9876
+        bindings:
+          period:
+            producer:
+              sync: true

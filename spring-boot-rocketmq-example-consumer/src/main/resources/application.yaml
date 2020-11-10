@@ -1,0 +1,29 @@
+server:
+  port: ${random.int[8000,9000]}
+spring:
+  application:
+    name: rocketmq-example-consumer
+  cloud:
+    stream:
+      bindings:
+        duobao_period_loser:
+          consumer:
+            max-attempts: 1
+            orderly: true
+          content-type: application/json
+          destination: duobao_period_loser
+          group: loser_g1
+        duobao_period_winner:
+          consumer:
+            max-attempts: 1
+            orderly: true
+          content-type: application/json
+          destination: duobao_period_winner
+          group: winner_g1
+      rocketmq:
+        binder:
+          name-server: 47.113.201.110:9876
+        bindings:
+          period:
+            consumer:
+              orderly: true
